@@ -25,6 +25,7 @@ volume.addEventListener('input', (e) => {
 soundItems.forEach((button) => {
 	button.addEventListener('click', () => {
 		const soundType = button.dataset.sound;
+		if (!soundFiles[soundType]) return;
 
 		if (activeButton === button) {
 			if (currentAudio.paused) {
@@ -37,7 +38,10 @@ soundItems.forEach((button) => {
 			return;
 		} else {
 			if (activeButton) {
-				currentAudio.pause();
+				if (currentAudio) {
+					currentAudio.pause();
+					currentAudio = null;
+				}
 				activeButton.classList.remove('paused');
 			}
 			activeButton = button;
