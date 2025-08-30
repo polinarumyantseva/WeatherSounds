@@ -1,7 +1,7 @@
 import './index.scss';
-import summerSound from '../public/assets/sounds/summer.mp3';
-import winterSound from '../public/assets/sounds/winter.mp3';
-import autumnSound from '../public/assets/sounds/rain.mp3';
+import summerSound from './assets/sounds/summer.mp3';
+import winterSound from './assets/sounds/winter.mp3';
+import autumnSound from './assets/sounds/rain.mp3';
 
 interface SoundFiles {
 	summer: string;
