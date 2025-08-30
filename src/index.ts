@@ -3,31 +3,40 @@ import summerSound from '../public/assets/sounds/summer.mp3';
 import winterSound from '../public/assets/sounds/winter.mp3';
 import autumnSound from '../public/assets/sounds/rain.mp3';
 
+interface SoundFiles {
+	summer: string;
+	winter: string;
+	autumn: string;
+	[key: string]: string;
+}
+
 const soundItems = document.querySelectorAll('.sound-item');
-const mainBackground = document.getElementById('main-background');
-const volume = document.getElementById('volume');
+const mainBackground = document.getElementById('main-background') as HTMLDivElement;
+const volume = document.getElementById('volume') as HTMLInputElement;
 
-let currentAudio = null;
-let activeButton = null;
+let currentAudio: HTMLMediaElement | null = null;
+let activeButton: Element | null = null;
 
-const soundFiles = {
+const soundFiles: SoundFiles = {
 	summer: summerSound,
 	winter: winterSound,
 	autumn: autumnSound,
 };
 
-volume.addEventListener('input', (e) => {
+volume.addEventListener('input', (e: Event) => {
+	const target = e.target as HTMLInputElement;
 	if (currentAudio) {
-		currentAudio.volume = e.target.value / 10;
+		currentAudio.volume = Number(target.value) / 10;
 	}
 });
 
-soundItems.forEach((button) => {
+soundItems.forEach((button: Element) => {
 	button.addEventListener('click', () => {
-		const soundType = button.dataset.sound;
-		if (!soundFiles[soundType]) return;
+		const soundType = (button as HTMLElement).dataset.sound;
 
-		if (activeButton === button) {
+		if (!soundType || !soundFiles[soundType]) return;
+
+		if (activeButton === button && currentAudio) {
 			if (currentAudio.paused) {
 				currentAudio.play();
 				activeButton.classList.remove('paused');
