@@ -73,7 +73,7 @@ body {
 		}
 		&.paused:after {
 			content: '';
-			background: url(../public/assets/icons/pause.svg) no-repeat;
+			background: url(./assets/icons/pause.svg) no-repeat;
 			background-size: 42px;
 			width: 42px;
 			height: 42px;
@@ -82,11 +82,11 @@ body {
 }
 
 .summer {
-	background-image: url('../public/assets/summer-bg.jpg');
+	background-image: url('./assets/summer-bg.jpg');
 }
 .autumn {
-	background-image: url('../public/assets/rainy-bg.jpg');
+	background-image: url('./assets/rainy-bg.jpg');
 }
 .winter {
-	background-image: url('../public/assets/winter-bg.jpg');
+	background-image: url('./assets/winter-bg.jpg');
 }
